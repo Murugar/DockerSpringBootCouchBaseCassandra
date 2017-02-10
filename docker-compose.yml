@@ -1,0 +1,41 @@
+version: '2'
+services:
+  cassandra:
+    image: poklet/cassandra
+    ports:
+       - 9042
+       - 7000
+       - 7001
+       - 9160
+       - 7199
+    networks:
+      vpcbr:  
+       ipv4_address: 10.5.0.6
+         
+  couchbase:
+    image: couchbase:community-4.0.0
+    ports:
+      - 8091
+      - 8092
+      - 8093
+      - 8094
+      - 11210
+      - 11211
+      - 11212
+      - 11213
+      - 11214
+    networks:
+      vpcbr:  
+       ipv4_address: 10.5.0.5
+    
+ 
+networks:
+  vpcbr:
+    driver: bridge
+    ipam:
+      config:
+      - subnet: 10.5.0.0/16
+        gateway: 10.5.0.1
+        
+       
+          
